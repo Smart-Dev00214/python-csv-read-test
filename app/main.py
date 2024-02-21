@@ -14,8 +14,8 @@ c.execute('''CREATE TABLE IF NOT EXISTS clients
              lastname TEXT, email TEXT, gender TEXT, birthDate TEXT)''')
 
 # Function to read CSV and store data in the database
-def read_csv_and_store(filename):
-    with open(filename, 'r') as file:
+def read_csv_and_store(dataset.csv):
+    with open(dataset.csv, 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             c.execute("INSERT INTO clients (category, firstname, lastname, email, gender, birthDate) VALUES (?, ?, ?, ?, ?, ?)",
@@ -58,8 +58,8 @@ def filter_data(category=None, gender=None, dob=None, age=None, age_range=None):
     return c.execute(query, params).fetchall()
 
 # Function to export filtered data to CSV
-def export_to_csv(data, filename):
-    with open(filename, 'w', newline='') as file:
+def export_to_csv(data, dataset.csv):
+    with open(dataset.csv, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['category', 'firstname', 'lastname', 'email', 'gender', 'birthDate'])
         writer.writerows(data)
